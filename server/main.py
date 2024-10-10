@@ -18,6 +18,7 @@ def users():
                 "Cathryn",
                 'Daniel',
                 'Katy',
+                'Michelle'
             ] 
         }
     )
