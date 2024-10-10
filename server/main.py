@@ -13,12 +13,7 @@ def users():
                 'Kerrry',
                 'Eric',
                 'Altay',
-                "Catherine",
-                "Arthur",
-                "Cathryn",
-                'Daniel',
-                'Katy',
-                "Jesslyn"
+                'Yeonju',
             ] 
         }
     )
