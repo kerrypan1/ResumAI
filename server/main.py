@@ -12,8 +12,15 @@ def users():
             "users": [
                 'Kerrry',
                 'Eric',
+<<<<<<< HEAD
                 'Altay'
                 
+=======
+                'Altay',
+                "Catherine",
+                "Arthur",
+                "Cathryn"
+>>>>>>> 2033b0980ed69162a4108621d4c17edf4a62520a
             ] 
         }
     )
