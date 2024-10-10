@@ -12,7 +12,8 @@ def users():
             "users": [
                 'Kerrry',
                 'Eric',
-                'Altay'
+                'Altay',
+                "Catherine"
             ] 
         }
     )
