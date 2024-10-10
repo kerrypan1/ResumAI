@@ -15,7 +15,9 @@ def users():
                 'Altay',
                 "Catherine",
                 "Arthur",
-                'Katy'
+                "Cathryn",
+                'Daniel',
+                'Katy',
             ] 
         }
     )
