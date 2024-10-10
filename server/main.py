@@ -14,6 +14,13 @@ def users():
                 'Eric',
                 'Altay',
                 'Yeonju',
+                "Catherine",
+                "Arthur",
+                "Cathryn",
+                'Daniel',
+                'Katy',
+                'Jesslyn',
+                'Michelle'
             ] 
         }
     )
