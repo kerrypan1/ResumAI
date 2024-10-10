@@ -20,7 +20,8 @@ def users():
                 'Daniel',
                 'Katy',
                 'Jesslyn',
-                'Michelle'
+                'Michelle',
+                'Vivian',
             ] 
         }
     )
