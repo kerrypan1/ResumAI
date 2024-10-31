@@ -26,3 +26,5 @@ s3_client = boto3.client(
     aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY
 )
+
+# Create function to send all the downloaded data to our database, AWS s3 buckets
