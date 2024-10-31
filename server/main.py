@@ -11,7 +11,7 @@ def users():
         {
             "users": [
                 'Kerrry',
-                'Eric',
+                'Eric is the goat',
                 'Altay',
                 'Yeonju',
                 "Catherine",
