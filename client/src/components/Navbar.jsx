@@ -2,9 +2,9 @@ import React from 'react';
 
 const Navbar = () => {
   const navItems = [
-    { label: 'Home', href: '#' },
-    { label: 'About', href: '#' },
-    { label: 'Contact', href: '#' }
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
   ];
 
   const styles = {
