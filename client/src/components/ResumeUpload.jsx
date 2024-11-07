@@ -15,6 +15,7 @@ function ResumeUpload({ onUpload }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (file) {
+      console.log(file)
       handleUpload();
     } else {
       alert('Please select a PDF file to upload.');
@@ -22,13 +23,19 @@ function ResumeUpload({ onUpload }) {
   };
 
   const handleUpload = async () => {
-    //send to backend
+    const formData = new FormData();
+    formData.append('resume', file);
+    try {
+      
+    } 
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input type="file" accept="application/pdf" onChange={handleFileChange} />
-      <button type="submit">Upload Resume</button>
+      <button className="submit-button" type="submit">
+        Upload Resume
+      </button>
     </form>
   );
 }
