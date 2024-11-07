@@ -25,9 +25,9 @@ function ResumeUpload({ onUpload }) {
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append('resume', file);
-    try {
+    // try {
       
-    } 
+    // } 
   };
 
   return (
@@ -39,5 +39,4 @@ function ResumeUpload({ onUpload }) {
     </form>
   );
 }
-
 export default ResumeUpload;
