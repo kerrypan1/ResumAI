@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const styles = {
     nav: {
-      background: 'linear-gradient(90deg, #F8CBBB 0%, #F1D0C6 100%)', // Indigo to purple gradient
+      background: 'linear-gradient(90deg, #E3A8A0 0%, #D29A97 100%)', // Indigo to purple gradient
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
     },
     container: {

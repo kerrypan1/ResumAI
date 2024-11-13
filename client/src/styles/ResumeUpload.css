@@ -14,7 +14,7 @@
   
   .upload-button {
     padding: 1.8rem 2rem;
-    background-color: #F8CBBB;
+    background-color: #E3A8A0;
     color: white;
     border: none;
     border-radius: 0.375rem;
@@ -27,5 +27,5 @@
   }
   
   .upload-button:hover {
-    background-color: #E7A89E;
+    background-color: #D29A97;
   }
