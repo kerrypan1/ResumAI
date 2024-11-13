@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/ResumeUpload.css';
 
 function ResumeUpload({ onUpload }) {
   const [file, setFile] = useState(null);
@@ -15,28 +16,31 @@ function ResumeUpload({ onUpload }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (file) {
-      console.log(file)
-      handleUpload();
+      const fileUrl = URL.createObjectURL(file);
+      onUpload(fileUrl);
     } else {
       alert('Please select a PDF file to upload.');
     }
   };
 
-  const handleUpload = async () => {
-    const formData = new FormData();
-    formData.append('resume', file);
-    // try {
-      
-    // } 
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" accept="application/pdf" onChange={handleFileChange} />
-      <button className="submit-button" type="submit">
-        Upload Resume
-      </button>
+    <form onSubmit={handleSubmit} className="upload-form">
+      <div className="upload-container">
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={handleFileChange}
+          className="file-input"
+        />
+        <button
+          className="upload-button"
+          type="submit"
+        >
+          Upload Resume
+        </button>
+      </div>
     </form>
   );
 }
+
 export default ResumeUpload;

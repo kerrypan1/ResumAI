@@ -1,0 +1,26 @@
+.upload-form {
+    margin-bottom: 1rem;
+  }
+  
+  .upload-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .file-input {
+    flex: 1;
+  }
+  
+  .upload-button {
+    padding: 0.5rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+  }
+  
+  .upload-button:hover {
+    background-color: #1d4ed8;
+  }

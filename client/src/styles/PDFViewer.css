@@ -1,0 +1,12 @@
+.pdf-container {
+    width: 100%;
+    max-width: 48rem;
+    margin: 1rem auto;
+  }
+  
+  .pdf-frame {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+  }
