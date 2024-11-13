@@ -34,7 +34,7 @@ function ResumeUpload({ onUpload }) {
         type="button"
         onClick={handleButtonClick}
       >
-        Upload Resume
+        Upload<br />Resume
       </button>
     </div>
   );
