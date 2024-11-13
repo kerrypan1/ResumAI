@@ -20,13 +20,17 @@ function HomePage() {
           <h1>ResumAI</h1>
           <h2>Upload your resume here:</h2>
         </div>
-        <ResumeUpload onUpload={handleUpload} />
+        <div className="resume-upload">
+          <ResumeUpload  onUpload={handleUpload} />
+        </div>
         {isUploaded && (
           <div className="status-message">
             Resume uploaded successfully!
           </div>
         )}
-        <PDFViewer pdfUrl={pdfUrl} />
+        <div className="resume-viewer">
+          <PDFViewer pdfUrl={pdfUrl} />
+        </div>
       </div>
     </div>
   );

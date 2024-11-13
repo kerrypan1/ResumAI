@@ -8,38 +8,35 @@ function ResumeUpload({ onUpload }) {
     const selectedFile = event.target.files[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile);
+      const fileUrl = URL.createObjectURL(selectedFile);
+      onUpload(fileUrl);
     } else {
       alert('Please upload a valid PDF file.');
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      onUpload(fileUrl);
-    } else {
-      alert('Please select a PDF file to upload.');
-    }
+  const handleButtonClick = () => {
+    document.getElementById('file-input').click();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="upload-form">
-      <div className="upload-container">
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={handleFileChange}
-          className="file-input"
-        />
-        <button
-          className="upload-button"
-          type="submit"
-        >
-          Upload Resume
-        </button>
-      </div>
-    </form>
+    <div className="upload-container">
+      <input
+        type="file"
+        id="file-input"
+        accept="application/pdf"
+        onChange={handleFileChange}
+        className="file-input"
+        style={{ display: 'none' }}
+      />
+      <button
+        className="upload-button"
+        type="button"
+        onClick={handleButtonClick}
+      >
+        Upload Resume
+      </button>
+    </div>
   );
 }
 
