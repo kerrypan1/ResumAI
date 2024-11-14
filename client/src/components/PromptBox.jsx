@@ -44,7 +44,7 @@ const textAreaStyle = {
   fontSize: '1rem',
   borderRadius: '0.375rem',
   border: '1px solid #D1D5DB',
-  marginBottom: '0.5rem',
+  marginBottom: '1rem',
   resize: 'vertical',
 };
 

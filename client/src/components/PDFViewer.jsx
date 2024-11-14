@@ -3,7 +3,7 @@ import '../styles/PDFViewer.css';
 
 const PDFViewer = ({ pdfUrl }) => {
   const firstPageUrl = `${pdfUrl}#page=1&toolbar=0`;
-
+  
   return (
     <div className="pdf-container">
       <iframe
