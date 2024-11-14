@@ -1,21 +1,23 @@
-.upload-form {
-  margin-bottom: 2rem;
-}
-
+/* ResumeUpload.styles.css */
 .upload-container {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1.5rem;
   position: relative;
 }
 
 .file-input {
-  flex: 1;
+  display: none;
 }
 
 .upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   padding: 1rem 2.5rem;
-  background-color: #E3A8A0;
+  background: linear-gradient(135deg, #E3A8A0 0%, #D29A97 100%);
   color: white;
   border: none;
   border-radius: 0.75rem;
@@ -24,22 +26,37 @@
   font-weight: 600;
   letter-spacing: 0.025em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transform: translateY(0);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-  min-width: 200px;
+  min-width: 220px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.upload-button:before {
+.upload-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effect */
+.upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.15),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.upload-button:hover .upload-icon {
+  transform: translateY(-2px);
+}
+
+/* Shine Effect */
+.upload-button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -49,74 +66,50 @@
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.3),
     transparent
   );
   transition: 0.5s;
 }
 
-.upload-button:hover {
-  background-color: #E3A8A0;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15),
-              0 4px 6px -2px rgba(0, 0, 0, 0.1),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.upload-button:hover:before {
+.upload-button:hover::before {
   left: 100%;
 }
 
+/* Active State */
 .upload-button:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1),
-              0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 
+    0 2px 4px -1px rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Add icon styles */
-.upload-button svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  transition: transform 0.3s ease;
-}
-
-.upload-button:hover svg {
-  transform: translateY(-2px);
-}
-
-/* Loading state */
+/* Loading State */
 .upload-button.loading {
-  background-color: #E3A8A0;
-  cursor: wait;
   opacity: 0.8;
+  cursor: wait;
 }
 
-.upload-button.loading svg {
+.upload-button.loading .upload-icon {
   animation: spin 1s linear infinite;
 }
 
-/* Success state */
-.upload-button.success {
-  background-color: #34D399;
+/* Focus State */
+.upload-button:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(211, 154, 151, 0.5),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Optional: Add ripple effect */
-.upload-button .ripple {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
+/* Disabled State */
+.upload-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
+/* Animations */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -126,25 +119,16 @@
   }
 }
 
-/* Optional: Add focus styles for accessibility */
-.upload-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(211, 154, 151, 0.5),
-              0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-/* Disabled state */
-.upload-button:disabled {
-  background-color: #E2E8F0;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Media query for smaller screens */
+/* Responsive Design */
 @media (max-width: 640px) {
   .upload-button {
     padding: 0.875rem 2rem;
     font-size: 1rem;
-    min-width: 180px;
+    min-width: 200px;
+  }
+  
+  .upload-icon {
+    width: 1rem;
+    height: 1rem;
   }
 }

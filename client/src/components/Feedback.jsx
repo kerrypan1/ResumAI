@@ -6,7 +6,7 @@ function FeedbackBox() {
     <div className="feedback-box-one">
         <div className="feedback">
             <h2 className="feedback-title">Example resume feedback</h2>
-            <p className="feedback-points">Some feedback details will go here.</p>
+            <p className="feedback-points">Feedback details will go here.</p>
         </div>
     </div>
   );

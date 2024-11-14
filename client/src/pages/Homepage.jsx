@@ -4,12 +4,14 @@ import PDFViewer from "../components/PDFViewer";
 import InfoBox from "../components/Info";
 import FeedbackBox from "../components/Feedback";
 import PromptBox from "../components/PromptBox";
+import { motion } from 'framer-motion';
 import '../styles/HomePage.css';
 
-function HomePage() {
+const HomePage = () => {
   const [pdfUrl, setPdfUrl] = useState("/dummy-resume.pdf");
   const [isUploaded, setIsUploaded] = useState(false);
   const [promptText, setPromptText] = useState('');
+  const [feedbackHistory, setFeedbackHistory] = useState([]);
 
   const handleUpload = (fileUrl) => {
     setPdfUrl(fileUrl);
@@ -22,52 +24,84 @@ function HomePage() {
 
   const handlePromptSubmit = () => {
     if (promptText.trim()) {
-      console.log("Prompt submitted:", promptText);
+      const newFeedback = {
+        id: Date.now(),
+        prompt: promptText,
+        response: "This is a sample AI feedback response."
+      };
+      setFeedbackHistory(prev => [...prev, newFeedback]);
       setPromptText('');
     }
   };
 
   return (
     <div className="home-page">
-      <div className="content-wrapper">
-        <h1 className="main-heading">
-          Get Expert Feedback on Your Resume
-          <span className="heading-underline"></span>
-        </h1>
-        
-        <div className="centered-upload">
+      <motion.div 
+        className="content-wrapper"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <header className="header">
+          <h1 className="main-heading">
+            Resume Review Assistant
+            <span className="heading-accent">AI-Powered Feedback</span>
+          </h1>
+        </header>
+
+        <div className="upload-container">
           <ResumeUpload onUpload={handleUpload} />
+          {isUploaded && (
+            <motion.div 
+              className="status-message"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="status-icon">✓</div>
+              <span>Resume uploaded successfully!</span>
+            </motion.div>
+          )}
         </div>
 
-        {isUploaded && (
-          <div className="status-message">
-            <div className="status-icon">✓</div>
-            Resume uploaded successfully!
-          </div>
-        )}
-
-        <div className="split-content">
-          <div className="section pdf-section">
-            <div className="section-card">
+        <div className="main-content">
+          <div className="pdf-section">
+            <motion.div 
+              className="section-card"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <PDFViewer pdfUrl={pdfUrl} />
-            </div>
+            </motion.div>
           </div>
 
-          <div className="section right-stack">
-            <div className="prompt-section section-card">
-              <h2 className="section-title">Prompt Box</h2>
-              <PromptBox onSubmit={handlePromptChange} />
-            </div>
+          <div className="interaction-section">
+            <motion.div 
+              className="prompt-container"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h2 className="section-title">Ask for Feedback</h2>
+              <PromptBox 
+                value={promptText}
+                onChange={handlePromptChange}
+                onSubmit={handlePromptSubmit}
+              />
+            </motion.div>
 
-            <div className="feedback-section section-card">
+            <motion.div 
+              className="feedback-container"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <h2 className="section-title">AI Feedback</h2>
-              <FeedbackBox />
-            </div>
+              <FeedbackBox history={feedbackHistory} />
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
-}
+};
 
 export default HomePage;

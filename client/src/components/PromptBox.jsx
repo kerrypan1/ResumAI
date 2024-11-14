@@ -49,14 +49,15 @@ const textAreaStyle = {
 };
 
 const buttonStyle = {
-  padding: '0.5rem 1.5rem',
+  padding: '0.9rem 1.5rem',
   fontSize: '1rem',
-  fontWeight: 'bold',
+  fontWeight: '500',
   color: '#FFFFFF',
   backgroundColor: '#E3A8A0',
   border: 'none',
   borderRadius: '0.375rem',
   cursor: 'pointer',
+  fontFamily: "'Poppins', sans-serif"
 };
 
 export default PromptBox;
