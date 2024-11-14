@@ -1,6 +1,6 @@
 .feedback-box-one {
-    width: 80vw;  
-    height: 90vh; 
+    width: 40vw;  
+    height: 40vh; 
     border: 2px solid black;
 }
 
@@ -10,11 +10,16 @@
     color: #9C9DC3;
 }
 
-.feedback-points {
-    font-size: 24px;
-    text-align: center;
+.feedback-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 1rem;
 }
 
-.feedback-title {
-    font-size: 32px;
+.feedback-points {
+    font-size: 1.125rem;
+    color: #64748b;
+    line-height: 1.6;
 }
+

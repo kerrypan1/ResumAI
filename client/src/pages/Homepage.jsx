@@ -30,28 +30,40 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="content-wrapper">
-        <div className="upload-and-prompt">
-          <div className="resume-upload">
-            <h2 className="upload-and-prompt-title">Step 1: Upload Your Resume</h2>
-            <ResumeUpload onUpload={handleUpload} />
-          </div>
-          <div className="prompt-box">
-            <h2 className="upload-and-prompt-title">Step 2: Ask ResumAI anything about your Resume!</h2>
-            <PromptBox onSubmit={handlePromptChange} />
-          </div>
+        <h1 className="main-heading">
+          Get Expert Feedback on Your Resume
+          <span className="heading-underline"></span>
+        </h1>
+        
+        <div className="centered-upload">
+          <ResumeUpload onUpload={handleUpload} />
         </div>
 
         {isUploaded && (
           <div className="status-message">
+            <div className="status-icon">✓</div>
             Resume uploaded successfully!
           </div>
         )}
 
-        <div className="viewer-feedback-container">
-          <div className="resume-viewer">
-            <PDFViewer pdfUrl={pdfUrl} />
+        <div className="split-content">
+          <div className="section pdf-section">
+            <div className="section-card">
+              <PDFViewer pdfUrl={pdfUrl} />
+            </div>
           </div>
-          <FeedbackBox />
+
+          <div className="section right-stack">
+            <div className="prompt-section section-card">
+              <h2 className="section-title">Prompt Box</h2>
+              <PromptBox onSubmit={handlePromptChange} />
+            </div>
+
+            <div className="feedback-section section-card">
+              <h2 className="section-title">AI Feedback</h2>
+              <FeedbackBox />
+            </div>
+          </div>
         </div>
       </div>
     </div>
