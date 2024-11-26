@@ -6,6 +6,7 @@ import HomePage from './pages/Homepage.jsx'
 import AboutPage from './pages/Aboutpage.jsx';
 import ContactPage from './pages/Contactpage.jsx';
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,5 +18,6 @@ createRoot(document.getElementById('root')).render(
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>
+    <Footer />
   </StrictMode>,
 )

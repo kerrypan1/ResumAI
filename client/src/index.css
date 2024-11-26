@@ -6,7 +6,6 @@
 
 .TitlePage {
   text-align: center;
-  
 }
 
 .Title {
@@ -29,4 +28,72 @@
     font-family: Verdana;
     font-weight: bold; 
     letter-spacing: 0.3px;
+}
+
+.footer {
+  background-color: #333;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer_logo {
+  color: #f3eded;
+  padding: 40px;
+  font-size: 30px;
+  margin: 0;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.footer_text {
+  display: flex;  
+  align-items: center;
+  gap: 10px;
+  align-items: center;
+  color: #fff;
+  flex: 3;
+}
+
+.footer_input {
+  padding: 10px;
+  border: 1px;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 15px;
+}
+
+.footer_button {
+  padding: 10px;
+  background-color: #F8CBBB;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.footer_button:hover {
+  background-color: #f4ab95;
+}
+
+.footer .footer_links a {
+  color: #fff !important; 
+}
+
+.footer_links {
+  display: flex;
+  text-decoration: none;
+  gap: 10px;
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  align-items: center;
+  margin-right: 40px;
+  flex: 1;
 }
