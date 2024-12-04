@@ -10,10 +10,10 @@ function Footer() {
         ResumAI 
       </a>
     </p>
-    <div class='footer_text'>
+    <div className='footer_text'>
       <p>Keep up with the latest update:</p>
-      <input type='text' placeholder='Enter your email to hear from us!' class='footer_input'/>
-       <button class='footer_button'>Subscribe</button>
+      <input type='text' placeholder='Enter your email to hear from us!' className='footer_input'/>
+       <button className='footer_button'>Subscribe</button>
     </div>
     <div className="footer_links">
         <a href='/'>Home</a>
