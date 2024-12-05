@@ -16,47 +16,48 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
       const fileUrl = URL.createObjectURL(selectedFile);
       onUpload(fileUrl);
 
-      // Send the file to the API
       try {
-        const formData = new FormData();
-        formData.append('file', selectedFile);
+        // Extract text from the PDF
+        const textFormData = new FormData();
+        textFormData.append('file', selectedFile);
 
-        const uploadResponse = await fetch('http://127.0.0.1:8080/upload-pdf', {
+        const textResponse = await fetch('http://127.0.0.1:8080/extract-text', {
           method: 'POST',
-          body: formData,
+          body: textFormData,
         });
 
-        if (uploadResponse.ok) {
-          const uploadData = await uploadResponse.json();
-          alert('File uploaded successfully!');
-          console.log('Uploaded file URL:', uploadData.file_url);
+        if (!textResponse.ok) {
+          const errorData = await textResponse.json();
+          console.error(`Text Extraction Error: ${errorData.error}`);
+          alert('Failed to extract text from the PDF.');
+          setIsLoading(false);
+          return;
+        }
 
-          // Trigger mock feedback generation after successful file upload
-          const mockScores = {
-            experience: 4,
-            skills: 3,
-            education: 2,
-          };
+        const { text: extractedText } = await textResponse.json();
+        console.log('Extracted Text:', extractedText);
 
-          const feedbackResponse = await fetch('http://127.0.0.1:8080/generate-feedback', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ scores: mockScores }),
-          });
+        // Generate feedback using scores and extracted text
+        const mockScores = {
+          experience: 4,
+          skills: 3,
+          education: 2,
+        };
 
-          if (feedbackResponse.ok) {
-            const feedbackData = await feedbackResponse.json();
-            console.log('Generated Feedback:', feedbackData.feedback);
-            // Pass feedback to the parent component
-            onFeedbackGenerated(feedbackData.feedback);
-          } else {
-            const feedbackError = await feedbackResponse.json();
-            console.error(`Feedback Error: ${feedbackError.error}`);
-            alert('Failed to generate feedback.');
-          }
+        const feedbackResponse = await fetch('http://127.0.0.1:8080/generate-feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scores: mockScores, text: extractedText }),
+        });
+
+        if (feedbackResponse.ok) {
+          const feedbackData = await feedbackResponse.json();
+          console.log('Generated Feedback:', feedbackData.feedback);
+          onFeedbackGenerated(feedbackData.feedback); // Pass feedback to parent component
         } else {
-          const uploadError = await uploadResponse.json();
-          alert(`Error: ${uploadError.error}`);
+          const feedbackError = await feedbackResponse.json();
+          console.error(`Feedback Error: ${feedbackError.error}`);
+          alert('Failed to generate feedback.');
         }
       } catch (error) {
         console.error('Error uploading file or generating feedback:', error);
@@ -89,7 +90,7 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
         disabled={isLoading}
       >
         <Upload className="upload-icon" />
-        <span>{isLoading ? 'Uploading...' : 'Upload Resume'}</span>
+        <span>{isLoading ? 'Processing...' : 'Upload Resume'}</span>
       </button>
     </div>
   );
