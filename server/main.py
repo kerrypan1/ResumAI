@@ -40,37 +40,39 @@ def generate_feedback(scores):
     """
     Generates resume feedback based on scores using OpenAI Chat API.
     """
-    # messages = [
-    #     {"role": "system", "content": "You are an experienced career coach specializing in computer science and data science jobs."},
-    #     {"role": "user", "content": f"""
-    #     The candidate has been evaluated with the following scores:
-    #     - Experience: {scores['experience']}/5
-    #     - Skills: {scores['skills']}/5
-    #     - Education: {scores['education']}/5
-
-    #     Provide detailed feedback:
-    #     1. Highlight strengths in the candidate's resume.
-    #     2. Identify weaknesses or gaps.
-    #     3. Offer actionable advice on how to improve their resume for technical roles in data science or computer science.
-    #     """}
-    # ]
-    # try:
-    #     response = openai.ChatCompletion.create(
-    #         model="gpt-3.5-turbo",  # Or "gpt-4" if available
-    #         messages=messages,
-    #         max_tokens=500,
-    #         temperature=0.7,
-    #     )
-    #     # Extract the assistant's reply
-    #     return response['choices'][0]['message']['content']
-    # except Exception as e:
-    #     return str(e)
-
-    return f""" 
-         Mock feedback, not actually using api       
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    model = "gpt-3.5-turbo"
+    messages = [
+        {"role": "system", "content": "You are an experienced career coach specializing in computer science and data science jobs."},
+        {"role": "user", "content": f"""
+        The candidate has been evaluated with the following scores:
         - Experience: {scores['experience']}/5
         - Skills: {scores['skills']}/5
-        - Education: {scores['education']}/5"""
+        - Education: {scores['education']}/5
+
+        Provide detailed feedback:
+        1. Highlight strengths in the candidate's resume.
+        2. Identify weaknesses or gaps.
+        3. Offer actionable advice on how to improve their resume for technical roles in data science or computer science.
+        """}
+    ]
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",  # Or "gpt-4" if available
+            messages=messages,
+            max_tokens=500,
+            temperature=0.7,
+        )
+        # Extract the assistant's reply
+        return response.choices[0].message
+    except Exception as e:
+        return str(e)
+
+    # return f""" 
+    #      Mock feedback, not actually using api       
+    #     - Experience: {scores['experience']}/5
+    #     - Skills: {scores['skills']}/5
+    #     - Education: {scores['education']}/5"""
 
 
 
