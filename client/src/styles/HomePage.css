@@ -12,6 +12,7 @@
   --success-color: #10b981;
   --error-color: #ef4444;
   --border-color: #e2e8f0;
+  --accent-light: #b8b7f5;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -40,7 +41,10 @@ body {
 .home-page {
   min-height: 100vh;
   padding: 2rem;
+  background: white;
 }
+
+
 
 .content-wrapper {
   max-width: 1440px;
@@ -54,7 +58,7 @@ body {
 }
 
 .main-heading {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
@@ -64,7 +68,7 @@ body {
 
 .heading-accent {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--text-secondary);
   margin-top: 0.5rem;
@@ -113,7 +117,7 @@ body {
 }
 
 .section-card {
-  background: var(--surface-color);
+  background: linear-gradient(145deg, var(--accent-light), #5d57db); /* Gradient with accent color */
   border-radius: 1rem;
   box-shadow: var(--shadow-lg);
   padding: 1.5rem;
@@ -134,6 +138,7 @@ body {
 
 .prompt-container,
 .feedback-container {
+  background: linear-gradient(145deg, var(--accent-light), var(--accent-color)); /* Gradient with accent color */
   background: var(--surface-color);
   border-radius: 1rem;
   box-shadow: var(--shadow-lg);
@@ -144,7 +149,7 @@ body {
 .section-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--accent-color);
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid var(--border-color);
