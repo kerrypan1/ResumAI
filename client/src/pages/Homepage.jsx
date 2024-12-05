@@ -12,6 +12,7 @@ const HomePage = () => {
   const [isUploaded, setIsUploaded] = useState(false);
   const [promptText, setPromptText] = useState('');
   const [feedbackHistory, setFeedbackHistory] = useState([]);
+  const [feedback, setFeedback] = useState('');
 
   const handleUpload = (fileUrl) => {
     setPdfUrl(fileUrl);
@@ -34,6 +35,10 @@ const HomePage = () => {
     }
   };
 
+  const handleFeedbackGenerated = (feedbackTest) => {
+    setFeedback(feedbackTest);
+  }
+
   return (
     <div className="home-page">
       <motion.div 
@@ -50,7 +55,7 @@ const HomePage = () => {
         </header>
 
         <div className="upload-container">
-          <ResumeUpload onUpload={handleUpload} />
+          <ResumeUpload onUpload={handleUpload} onFeedbackGenerated={handleFeedbackGenerated} />
           {isUploaded && (
             <motion.div 
               className="status-message"
@@ -95,7 +100,7 @@ const HomePage = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <h2 className="section-title">AI Feedback</h2>
-              <FeedbackBox history={feedbackHistory} />
+              <FeedbackBox history={feedbackHistory} feedback={feedback} />
             </motion.div>
           </div>
         </div>
