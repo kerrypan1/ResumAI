@@ -51,7 +51,7 @@ def generate_feedback(scores):
         - Education: {scores['education']}/5
 
         Provide detailed feedback:
-        1. Highlight strengths in the candidate's resume.
+        1. Briefly highlight strengths in the candidate's resume.
         2. Identify weaknesses or gaps.
         3. Offer actionable advice on how to improve their resume for technical roles in data science or computer science.
         """}
@@ -60,7 +60,7 @@ def generate_feedback(scores):
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",  # Or "gpt-4" if available
             messages=messages,
-            max_tokens=500,
+            max_tokens=250,
             temperature=0.7,
         )
         # Extract the assistant's reply
