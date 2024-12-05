@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Upload } from 'lucide-react';
 import '../styles/ResumeUpload.css';
 
-function ResumeUpload({ onUpload }) {
+function ResumeUpload({ onUpload, onFeedbackGenerated }) {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -12,7 +12,7 @@ function ResumeUpload({ onUpload }) {
       setIsLoading(true);
       setFile(selectedFile);
 
-      // Call the onUpload callback to notify parent component (if needed)
+      // Call the onUpload callback to notify the parent component (if needed)
       const fileUrl = URL.createObjectURL(selectedFile);
       onUpload(fileUrl);
 
@@ -21,22 +21,46 @@ function ResumeUpload({ onUpload }) {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const response = await fetch('http://127.0.0.1:8080/upload-pdf', {
+        const uploadResponse = await fetch('http://127.0.0.1:8080/upload-pdf', {
           method: 'POST',
           body: formData,
         });
 
-        if (response.ok) {
-          const data = await response.json();
+        if (uploadResponse.ok) {
+          const uploadData = await uploadResponse.json();
           alert('File uploaded successfully!');
-          console.log('Uploaded file URL:', data.file_url);
+          console.log('Uploaded file URL:', uploadData.file_url);
+
+          // Trigger mock feedback generation after successful file upload
+          const mockScores = {
+            experience: 4,
+            skills: 3,
+            education: 2,
+          };
+
+          const feedbackResponse = await fetch('http://127.0.0.1:8080/generate-feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ scores: mockScores }),
+          });
+
+          if (feedbackResponse.ok) {
+            const feedbackData = await feedbackResponse.json();
+            console.log('Generated Feedback:', feedbackData.feedback);
+            // Pass feedback to the parent component
+            onFeedbackGenerated(feedbackData.feedback);
+          } else {
+            const feedbackError = await feedbackResponse.json();
+            console.error(`Feedback Error: ${feedbackError.error}`);
+            alert('Failed to generate feedback.');
+          }
         } else {
-          const errorData = await response.json();
-          alert(`Error: ${errorData.error}`);
+          const uploadError = await uploadResponse.json();
+          alert(`Error: ${uploadError.error}`);
         }
       } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('An error occurred while uploading the file.');
+        console.error('Error uploading file or generating feedback:', error);
+        alert('An error occurred while processing your request.');
       }
 
       setIsLoading(false);
