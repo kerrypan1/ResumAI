@@ -66,8 +66,6 @@ def generate_feedback(scores):
     # except Exception as e:
     #     return str(e)
 
-    
-
     return f""" 
          Mock feedback, not actually using api       
         - Experience: {scores['experience']}/5
