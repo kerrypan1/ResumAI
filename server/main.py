@@ -63,7 +63,7 @@ def extract_text():
         return jsonify({'error': str(e)}), 500
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-def generate_feedback(scores):
+def generate_feedback(scores, resume_text):
     """
     Generates resume feedback based on scores using OpenAI Chat API.
     """
@@ -76,6 +76,9 @@ def generate_feedback(scores):
         - Experience: {scores['experience']}/5
         - Skills: {scores['skills']}/5
         - Education: {scores['education']}/5
+
+        Here is the text extracted from the candidate's resume:
+        {resume_text}
 
         Provide detailed feedback:
         1. Briefly highlight strengths in the candidate's resume.
@@ -114,13 +117,18 @@ def generate_feedback_endpoint():
         # Parse the JSON payload from the frontend
         data = request.get_json()
         scores = data.get('scores', {})
+        resume_text = data.get('text', '')
+
 
         # Validate input
         if not scores or not all(k in scores for k in ['experience', 'skills', 'education']):
             return jsonify({'error': 'Invalid or incomplete scores provided'}), 400
+        
+        if not resume_text:
+            return jsonify({'error': 'No resume text provided'}), 400
 
         # Generate feedback using OpenAI
-        feedback = generate_feedback(scores)
+        feedback = generate_feedback(scores, resume_text)
         return jsonify({'feedback': feedback}), 200
 
     except Exception as e:
