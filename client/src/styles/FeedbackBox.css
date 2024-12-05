@@ -8,6 +8,7 @@
     padding: 20px;
     text-align: center;
     color: #9C9DC3;
+    overflow-y: auto;
 }
 
 .feedback-title {
