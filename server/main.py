@@ -57,14 +57,14 @@ def generate_feedback(scores):
         """}
     ]
     try:
-        response = client.chat.completions.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",  # Or "gpt-4" if available
             messages=messages,
             max_tokens=500,
             temperature=0.7,
         )
         # Extract the assistant's reply
-        return response.choices[0].message
+        return response.choices[0].message.content
     except Exception as e:
         return str(e)
 
