@@ -5,6 +5,8 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import openai
+from PyPDF2 import PdfReader
+
 
 load_dotenv()  # Load environment variables from .env
 
@@ -33,7 +35,32 @@ def users():
         }
     )
 
+@app.route('/extract-text', methods=['POST'])
+def extract_text():
+    """
+    Extracts text from an uploaded PDF file.
+    """
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part in the request'}), 400
 
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'error': 'No file selected for uploading'}), 400
+
+    if not file.filename.endswith('.pdf'):
+        return jsonify({'error': 'Only PDF files are allowed'}), 400
+
+    try:
+        # Read PDF file
+        pdf_reader = PdfReader(file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+
+        return jsonify({'text': text}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 def generate_feedback(scores):
