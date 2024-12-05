@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import ResumeUpload from "../components/ResumeUpload";
 import PDFViewer from "../components/PDFViewer";
-import InfoBox from "../components/Info";
 import FeedbackBox from "../components/Feedback";
 import PromptBox from "../components/PromptBox";
 import { motion } from 'framer-motion';
 import '../styles/HomePage.css';
 
+/* Example websites:
+https://www.wonsulting.ai/resumai
+https://www.canva.com/ai-resume-builder/
+https://www.resumenerd.ai/landings?utm_source=google&utm_medium=cpc&utm_term=automatic%20resume%20builder&utm_campaign=21033265870&adid=691148541514&gad_source=1&gbraid=0AAAAA9Sa83ONQOtQmXqESEvEACInAYmvb&gclid=CjwKCAiA9bq6BhAKEiwAH6bqoFcwCKVn103lSkCEGkKvElsIhXxWuYEFbE41jfLaVjv0xZQadN8k5RoCBuQQAvD_BwE
+https://resume.co/?afid=gdnuss&utm_source=google&utm_medium=cpc&utm_campaign=20156252285&utm_term=ai%20resume%20builder&gad_source=1&gbraid=0AAAAAofXKxu-1kqZzYZ13Ua1M8E6u-7PH&gclid=CjwKCAiA9bq6BhAKEiwAH6bqoMMk4ZYsI-eFB2L_LfHKdCR00qArWV8BKijuYs4AO6NF_zXyuBrSxhoC0hEQAvD_BwE
+https://enhancv.com/ai-resume-builder/
+https://www.resumebuilder.com
+https://www.resume-now.com/home_1
+
+
+
+ */
+
 const HomePage = () => {
-  const [pdfUrl, setPdfUrl] = useState("/dummy-resume.pdf");
+  const [pdfUrl, setPdfUrl] = useState("/Colorful-Resume-Template.pdf");
   const [isUploaded, setIsUploaded] = useState(false);
   const [promptText, setPromptText] = useState('');
   const [feedbackHistory, setFeedbackHistory] = useState([]);
@@ -44,8 +56,9 @@ const HomePage = () => {
       >
         <header className="header">
           <h1 className="main-heading">
-            Resume Review Assistant
-            <span className="heading-accent">AI-Powered Feedback</span>
+            Reinvent Your Resume with AI 
+            <span className="heading-accent">Optimize your resume in no time with AI-powered content that’s tailored just for you
+</span>
           </h1>
         </header>
 

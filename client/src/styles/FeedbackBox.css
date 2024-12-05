@@ -1,7 +1,7 @@
 .feedback-box-one {
     width: 40vw;  
     height: 40vh; 
-    border: 2px solid black;
+    border: 2px solid var(--accent-color);
 }
 
 .feedback {

@@ -10,7 +10,7 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       className="navbar"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -34,7 +34,7 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 className="nav-link"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   border: "2px solid rgba(255, 255, 255, 0.5)"
