@@ -34,6 +34,8 @@ def users():
     )
 
 
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 def generate_feedback(scores):
     """
     Generates resume feedback based on scores using OpenAI Chat API.
@@ -63,6 +65,8 @@ def generate_feedback(scores):
     #     return response['choices'][0]['message']['content']
     # except Exception as e:
     #     return str(e)
+
+    
 
     return f""" 
          Mock feedback, not actually using api       
