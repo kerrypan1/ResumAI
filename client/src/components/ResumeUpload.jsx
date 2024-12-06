@@ -14,12 +14,15 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
 
       // Call the onUpload callback to notify the parent component (if needed)
       const fileUrl = URL.createObjectURL(selectedFile);
+      console.log(fileUrl);
       onUpload(fileUrl);
+      
 
       try {
         // Extract text from the PDF
         const textFormData = new FormData();
         textFormData.append('file', selectedFile);
+        // console.log(textFormData);
 
         const textResponse = await fetch('http://127.0.0.1:8080/extract-text', {
           method: 'POST',
@@ -35,13 +38,17 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
         }
 
         const { text: extractedText } = await textResponse.json();
-        console.log('Extracted Text:', extractedText);
+        // console.log('Extracted Text:', extractedText);
 
         // Generate feedback using scores and extracted text
         const mockScores = {
-          experience: 4,
-          skills: 3,
-          education: 2,
+          totalScore: 61,
+          grammerScore: 77,
+          actionVerbScore: 68,
+          qaScore: 36,
+          experience: 60,
+          skills: 53,
+          education: 37,
         };
 
         const feedbackResponse = await fetch('http://127.0.0.1:8080/generate-feedback', {

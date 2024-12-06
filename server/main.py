@@ -35,6 +35,10 @@ def users():
         }
     )
 
+@app.route('/')
+def get_resume_scores(csv):
+    return None
+
 @app.route('/extract-text', methods=['POST'])
 def extract_text():
     """
@@ -70,27 +74,34 @@ def generate_feedback(scores, resume_text):
     client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     model = "gpt-3.5-turbo"
     messages = [
-        {"role": "system", "content": "You are an experienced career coach specializing in computer science and data science jobs."},
+        {"role": "system", "content": "You are an experienced career coach specializing in computer science and data science jobs, reviewing candidates resumes."},
         {"role": "user", "content": f"""
-        The candidate has been evaluated with the following scores:
-        - Experience: {scores['experience']}/5
-        - Skills: {scores['skills']}/5
-        - Education: {scores['education']}/5
+        The candidate's resume has been evaluated with the following scores:
+        - Overall Score: {scores['totalScore']}/100
+        - Experience: {scores['experience']}/100
+        - Skills: {scores['skills']}/100
+        - Education: {scores['education']}/100
+        - Grammer Score: {scores['grammerScore']}/100
+        - Quantifiable Achievement Score: {scores['qaScore']}/100
+        - Action Verb Score: {scores['actionVerbScore']}/100
+
+
 
         Here is the text extracted from the candidate's resume:
         {resume_text}
 
-        Provide detailed feedback:
-        1. Briefly highlight strengths in the candidate's resume.
-        2. Identify weaknesses or gaps.
-        3. Offer actionable advice on how to improve their resume for technical roles in data science or computer science.
+        Offer specific actionable advice on how to improve their resume based on the given scores for technical roles in data science or computer science. Recommend potential languages/frameworks/skills to pick up, and defined actions the user can take.
+        Be concise, give a maximum of 400 words.
+        The output should follow this format:
+        - Scores listed for each section 
+        - Feedback: your specific recommendations
         """}
     ]
     try:
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",  # Or "gpt-4" if available
             messages=messages,
-            max_tokens=250,
+            max_tokens=400,
             temperature=0.7,
         )
         # Extract the assistant's reply
