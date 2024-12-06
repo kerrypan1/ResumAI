@@ -1,6 +1,7 @@
 import { SparklesIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
+import '../styles/Footer.css';
 
 function Footer() {
   return (
@@ -11,8 +12,8 @@ function Footer() {
       </a>
     </p>
     <div className='footer_text'>
-      <p>Keep up with the latest update:</p>
-      <input type='text' placeholder='Enter your email to hear from us!' className='footer_input'/>
+      <p>Keep up with the latest updates:</p>
+      <input type='text' placeholder='Enter your email' className='footer_input'/>
        <button className='footer_button'>Subscribe</button>
     </div>
     <div className="footer_links">

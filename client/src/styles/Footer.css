@@ -1,0 +1,109 @@
+/* Footer container with gradient background */
+.footer {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.7rem 0;
+    color: white;
+    position: relative;
+  }
+  
+  /* Footer container for centering content */
+  .footer-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  
+  /* Styling for footer logo */
+  .footer_logo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+  }
+  
+  .footer_logo a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer_logo a:hover {
+    color: #ffeb3b; /* Accent color on hover */
+  }
+  
+  /* Footer text container */
+  .footer_text {
+    margin-bottom: 2rem;
+  }
+  
+  .footer_input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    background-color: white;
+    margin-right: 0.5rem;
+  }
+  
+  .footer_button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .footer_button:hover {
+    background-color: #6366f1; /* Lighter shade on hover */
+  }
+  
+  /* Footer links styling */
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 25px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #ffeb3b; /* Accent color on hover */
+  }
+  
+  /* Responsive Design for footer */
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: 0 1rem;
+    }
+  
+    .footer-links {
+      gap: 1.5rem;
+    }
+  
+    .footer_logo {
+      font-size: 1.5rem;
+    }
+  
+    .footer_input {
+      font-size: 0.875rem;
+    }
+  
+    .footer_button {
+      font-size: 0.875rem;
+    }
+  }
+  

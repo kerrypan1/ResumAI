@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/PromptBox.css';
 
 function PromptBox({ onSubmit }) {
   const [promptText, setPromptText] = useState('');
@@ -24,7 +25,7 @@ function PromptBox({ onSubmit }) {
         onChange={handleChange}
         rows="4"
       />
-      <button style={buttonStyle} onClick={handleSubmit}>Submit</button>
+      <button className="submit-button" onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
@@ -46,18 +47,6 @@ const textAreaStyle = {
   border: '1px solid #D1D5DB',
   marginBottom: '1rem',
   resize: 'vertical',
-};
-
-const buttonStyle = {
-  padding: '0.9rem 1.5rem',
-  fontSize: '1rem',
-  fontWeight: '500',
-  color: '#FFFFFF',
-  backgroundColor: '#E3A8A0',
-  border: 'none',
-  borderRadius: '0.375rem',
-  cursor: 'pointer',
-  fontFamily: "'Poppins', sans-serif"
 };
 
 export default PromptBox;

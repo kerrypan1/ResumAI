@@ -5,6 +5,8 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 import openai
+from PyPDF2 import PdfReader
+
 
 load_dotenv()  # Load environment variables from .env
 
@@ -33,10 +35,35 @@ def users():
         }
     )
 
+@app.route('/extract-text', methods=['POST'])
+def extract_text():
+    """
+    Extracts text from an uploaded PDF file.
+    """
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part in the request'}), 400
 
+    file = request.files['file']
+
+    if file.filename == '':
+        return jsonify({'error': 'No file selected for uploading'}), 400
+
+    if not file.filename.endswith('.pdf'):
+        return jsonify({'error': 'Only PDF files are allowed'}), 400
+
+    try:
+        # Read PDF file
+        pdf_reader = PdfReader(file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+
+        return jsonify({'text': text}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-def generate_feedback(scores):
+def generate_feedback(scores, resume_text):
     """
     Generates resume feedback based on scores using OpenAI Chat API.
     """
@@ -50,8 +77,11 @@ def generate_feedback(scores):
         - Skills: {scores['skills']}/5
         - Education: {scores['education']}/5
 
+        Here is the text extracted from the candidate's resume:
+        {resume_text}
+
         Provide detailed feedback:
-        1. Highlight strengths in the candidate's resume.
+        1. Briefly highlight strengths in the candidate's resume.
         2. Identify weaknesses or gaps.
         3. Offer actionable advice on how to improve their resume for technical roles in data science or computer science.
         """}
@@ -60,7 +90,7 @@ def generate_feedback(scores):
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",  # Or "gpt-4" if available
             messages=messages,
-            max_tokens=500,
+            max_tokens=250,
             temperature=0.7,
         )
         # Extract the assistant's reply
@@ -87,13 +117,18 @@ def generate_feedback_endpoint():
         # Parse the JSON payload from the frontend
         data = request.get_json()
         scores = data.get('scores', {})
+        resume_text = data.get('text', '')
+
 
         # Validate input
         if not scores or not all(k in scores for k in ['experience', 'skills', 'education']):
             return jsonify({'error': 'Invalid or incomplete scores provided'}), 400
+        
+        if not resume_text:
+            return jsonify({'error': 'No resume text provided'}), 400
 
         # Generate feedback using OpenAI
-        feedback = generate_feedback(scores)
+        feedback = generate_feedback(scores, resume_text)
         return jsonify({'feedback': feedback}), 200
 
     except Exception as e:

@@ -1,13 +1,15 @@
 .feedback-box-one {
     width: 40vw;  
     height: 40vh; 
-    border: 2px solid black;
+    border: 2px solid var(--accent-color);
+    overflow-y: auto;
 }
 
 .feedback {
     padding: 20px;
     text-align: center;
     color: #9C9DC3;
+    overflow-y: auto;
 }
 
 .feedback-title {
