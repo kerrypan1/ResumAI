@@ -37,6 +37,18 @@ function ContactPage() {
                 <p>email</p>
               </div>
             </div>
+            <div className="profile-item">
+                <div className="profile-circle">
+                  <img 
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
+                    className="profile-image" 
+                  />
+                </div>
+              <div className='description-text'>
+                <h3>Altay Hodoglugil</h3> 
+                <p>email</p>
+              </div>
+            </div>
           </div> 
         </div>
 
@@ -102,25 +114,11 @@ function ContactPage() {
                   />
                 </div>
                 <div className='description-text'>
-                  <h3>Altay Hodoglugil</h3> 
-                  <p>email</p>
-                </div>
-              </div>
-
-              {/* Second Profile */}
-              <div className="profile-item">
-                <div className="profile-circle">
-                  <img 
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
-                    className="profile-image" 
-                  />
-                </div>
-                <div className='description-text'>
                   <h3>Arthur Laureus Wigo</h3> 
                   <p>email</p>
                 </div>
               </div>
-               {/* Third Profile */}
+               {/* Second Profile */}
               <div className="profile-item">
                 <div className="profile-circle">
                   <img 
@@ -133,7 +131,7 @@ function ContactPage() {
                   <p>email</p>
                 </div>
               </div>
-                 {/* Fourth Profile */}
+                 {/* Third Profile */}
                  <div className="profile-item">
                 <div className="profile-circle">
                   <img 
