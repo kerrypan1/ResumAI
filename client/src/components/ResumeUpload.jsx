@@ -14,7 +14,6 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
 
       // Call the onUpload callback to notify the parent component (if needed)
       const fileUrl = URL.createObjectURL(selectedFile);
-      console.log(fileUrl);
       onUpload(fileUrl);
       
 
@@ -59,7 +58,6 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
 
         if (feedbackResponse.ok) {
           const feedbackData = await feedbackResponse.json();
-          console.log('Generated Feedback:', feedbackData.feedback);
           onFeedbackGenerated(feedbackData.feedback); // Pass feedback to parent component
         } else {
           const feedbackError = await feedbackResponse.json();

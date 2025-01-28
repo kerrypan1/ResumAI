@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ResumeUpload from "../components/ResumeUpload";
-import PDFViewer from "../components/PDFViewer";
-import FeedbackBox from "../components/Feedback";
-import PromptBox from "../components/PromptBox";
+import ResumeUpload from '../components/ResumeUpload';
+import PDFViewer from '../components/PDFViewer';
+import FeedbackBox from '../components/Feedback';
+import PromptBox from '../components/PromptBox';
 import { motion } from 'framer-motion';
 import '../styles/HomePage.css';
 
@@ -20,7 +20,7 @@ https://www.resume-now.com/home_1
  */
 
 const HomePage = () => {
-  const [pdfUrl, setPdfUrl] = useState("/Colorful-Resume-Template.pdf");
+  const [pdfUrl, setPdfUrl] = useState('/Colorful-Resume-Template.pdf');
   const [isUploaded, setIsUploaded] = useState(false);
   const [promptText, setPromptText] = useState('');
   const [feedbackHistory, setFeedbackHistory] = useState([]);
@@ -40,20 +40,20 @@ const HomePage = () => {
       const newFeedback = {
         id: Date.now(),
         prompt: promptText,
-        response: "This is a sample AI feedback response."
+        response: 'This is a sample AI feedback response.',
       };
-      setFeedbackHistory(prev => [...prev, newFeedback]);
+      setFeedbackHistory((prev) => [...prev, newFeedback]);
       setPromptText('');
     }
   };
 
   const handleFeedbackGenerated = (feedbackTest) => {
     setFeedback(feedbackTest);
-  }
+  };
 
   return (
     <div className="home-page">
-      <motion.div 
+      <motion.div
         className="content-wrapper"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -61,16 +61,21 @@ const HomePage = () => {
       >
         <header className="header">
           <h1 className="main-heading">
-            Reinvent Your Resume with AI 
-            <span className="heading-accent">Optimize your resume in no time with AI-powered content that’s tailored just for you
-</span>
+            Reinvent Your Resume with AI
+            <span className="heading-accent">
+              Optimize your resume in no time with AI-powered content that’s
+              tailored just for you
+            </span>
           </h1>
         </header>
 
         <div className="upload-container">
-          <ResumeUpload onUpload={handleUpload} onFeedbackGenerated={handleFeedbackGenerated} />
+          <ResumeUpload
+            onUpload={handleUpload}
+            onFeedbackGenerated={handleFeedbackGenerated}
+          />
           {isUploaded && (
-            <motion.div 
+            <motion.div
               className="status-message"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -84,37 +89,37 @@ const HomePage = () => {
 
         <div className="main-content">
           <div className="pdf-section">
-            <motion.div 
+            <motion.div
               className="section-card"
               whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               <PDFViewer pdfUrl={pdfUrl} />
             </motion.div>
           </div>
 
           <div className="interaction-section">
-            <motion.div 
+            <motion.div
               className="prompt-container"
               whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <h2 className="section-title">Ask for Feedback</h2>
-              <PromptBox 
-                value={promptText}
-                onChange={handlePromptChange}
-                onSubmit={handlePromptSubmit}
-              />
-            </motion.div>
-
-            <motion.div 
-              className="feedback-container"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               <h2 className="section-title">AI Feedback</h2>
               <FeedbackBox history={feedbackHistory} feedback={feedback} />
             </motion.div>
+
+            {/* <motion.div
+              className="feedback-container"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <h2 className="section-title">Ask for more feedback</h2>
+              <PromptBox
+                value={promptText}
+                onChange={handlePromptChange}
+                onSubmit={handlePromptSubmit}
+              />
+            </motion.div> */}
           </div>
         </div>
       </motion.div>
