@@ -6,6 +6,9 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Get the backend URL from the environment variable
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const handleFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
@@ -15,15 +18,13 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
       // Call the onUpload callback to notify the parent component (if needed)
       const fileUrl = URL.createObjectURL(selectedFile);
       onUpload(fileUrl);
-      
 
       try {
         // Extract text from the PDF
         const textFormData = new FormData();
         textFormData.append('file', selectedFile);
-        // console.log(textFormData);
 
-        const textResponse = await fetch('http://127.0.0.1:8080/extract-text', {
+        const textResponse = await fetch(`${backendUrl}/extract-text`, {
           method: 'POST',
           body: textFormData,
         });
@@ -37,7 +38,6 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
         }
 
         const { text: extractedText } = await textResponse.json();
-        // console.log('Extracted Text:', extractedText);
 
         // Generate feedback using scores and extracted text
         const mockScores = {
@@ -50,7 +50,7 @@ function ResumeUpload({ onUpload, onFeedbackGenerated }) {
           education: 37,
         };
 
-        const feedbackResponse = await fetch('http://127.0.0.1:8080/generate-feedback', {
+        const feedbackResponse = await fetch(`${backendUrl}/generate-feedback`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ scores: mockScores, text: extractedText }),
