@@ -36,8 +36,8 @@ def users():
     )
 
 @app.route('/')
-def get_resume_scores():
-    return None
+def index():
+    return jsonify({"message": "Resume AI backend is running!"}), 200
 
 @app.route('/extract-text', methods=['POST'])
 def extract_text():
