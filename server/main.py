@@ -36,7 +36,7 @@ def users():
     )
 
 @app.route('/')
-def get_resume_scores(csv):
+def get_resume_scores():
     return None
 
 @app.route('/extract-text', methods=['POST'])
