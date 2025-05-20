@@ -4,5 +4,5 @@
 - Check out the website here- https://resumai-pi.vercel.app/
 
 ## Team
-- Leads: Eric Liang, Kerry Pan
-- Members: Altay Hodoglugil, Vivian Shen, Cathryn Chang, Katy Yang, Arthur Wigo, Jesslyn Ruswan, Catherine Zhuang, William Chang, Daniel Li, Michelle Li, Yeonju Seo
+- Leads: Eric Liang, Kerry Pan, Altay Hodoglugil
+- Members: Vivian Shen, Cathryn Chang, Katy Yang, Arthur Wigo, Jesslyn Ruswan, Catherine Zhuang, William Chang, Daniel Li, Michelle Li, Yeonju Seo
